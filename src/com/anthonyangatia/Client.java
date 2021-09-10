@@ -48,7 +48,6 @@ public class Client implements ActionListener {
                     System.out.print("");
                     if(buttonClicked == true) {
                         outputStream.println(response);
-//                        cleanTextFields();
                         break;
                     }
                 }
@@ -102,15 +101,6 @@ public class Client implements ActionListener {
             label.setFont(new Font("Serif", Font.PLAIN, 18));
             frame.add(label);
 
-//            userText = new JTextField(20);
-//            userText.setBounds(100,50,200,25);
-//            frame.add(userText);
-
-//            button = new JButton("SEND");
-//            button.setBounds(120,80,100,25);
-//            frame.add(button);
-//            button.addActionListener(new Client());
-
         }
         frame.setSize(420,420);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,6 +109,42 @@ public class Client implements ActionListener {
 
 
     }
+
+
+/**
+This method handles the button clicks.
+    It gets the input from the respective input field and
+    sends to the main method wehere it is sent to the server
+ **/
+    @Override
+    public void actionPerformed(ActionEvent e) {
+//        System.out.println("Clicked");
+        if(all){
+            response = admissionNo.getText()+ " " +fName.getText() + " " + surname.getText() + " "
+                    + faculty.getText() + " " + school.getText() +
+                    personalCode.getText();
+        }
+        if(!Objects.equals(faculty.getText(), " ")){
+            response = faculty.getText() + " " + school.getText();
+            System.out.println("Faculty:"+ response);
+        }else if(!Objects.equals(admissionNo.getText(), " ")){
+            response = admissionNo.getText();
+            System.out.println("Admission:"+ response);
+        }else if(!Objects.equals(fName.getText(), " ")){
+            response = fName.getText() + " " + surname.getText() ;
+            System.out.println("NAMES: "+ response);
+        }else if(!Objects.equals(personalCode.getText(), " ")){
+            response = personalCode.getText();
+            System.out.println("Personal code:"+ personalCode.getText());
+        }
+        buttonClicked = true;
+        System.out.println(response);
+        frame.dispose();
+
+    }
+/**The below 4 methods are for consrtructig the
+           user interface of the different screen
+ **/
 
     private static void facultyCourseGUI() {
         frame = new JFrame();
@@ -257,33 +283,5 @@ public class Client implements ActionListener {
         button.setBounds(120,80,100,25);
         frame.add(button);
         button.addActionListener(new Client());
-    }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-//        System.out.println("Clicked");
-        if(all){
-            response = admissionNo.getText()+ " " +fName.getText() + " " + surname.getText() + " "
-                    + faculty.getText() + " " + school.getText() +
-                    personalCode.getText();
-        }
-        if(!Objects.equals(faculty.getText(), " ")){
-            response = faculty.getText() + " " + school.getText();
-            System.out.println("Faculty:"+ response);
-        }else if(!Objects.equals(admissionNo.getText(), " ")){
-            response = admissionNo.getText();
-            System.out.println("Admission:"+ response);
-        }else if(!Objects.equals(fName.getText(), " ")){
-            response = fName.getText() + " " + surname.getText() ;
-            System.out.println("NAMES: "+ response);
-        }else if(!Objects.equals(personalCode.getText(), " ")){
-            response = personalCode.getText();
-            System.out.println("Personal code:"+ personalCode.getText());
-        }
-        buttonClicked = true;
-        System.out.println(response);
-        frame.dispose();
-
     }
 }
